@@ -180,7 +180,7 @@ resource "google_cloud_run_v2_service" "creative_studio" {
   default_uri_disabled = var.use_lb
   deletion_protection  = false
   iap_enabled          = !var.use_lb
-  invoker_iam_disabled = !var.use_lb
+  invoker_iam_disabled = var.use_lb ? true : null
   launch_stage         = var.use_lb ? "GA" : "BETA"
 
   template {
